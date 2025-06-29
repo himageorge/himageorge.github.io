@@ -1,0 +1,57 @@
+header {
+    background-color: #004c99;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+  }
+ 
+  
+  nav a {
+    margin: 1rem;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+ 
+  main {
+    padding: 2rem;
+
+  }
+
+  
+
+/* Footer styles */
+footer {
+    min-height: 60px;
+    background: PapayaWhip;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Container that holds text + icons */
+  .footer-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  
+  /* Icon list */
+  .footer-icons {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
+ 
+  /* Icon styling */
+  footer svg {
+    color: #57705B;
+
+  }
+  
+  footer svg:hover {
+    color: #AABCA3;
+  }
