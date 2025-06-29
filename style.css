@@ -1,5 +1,6 @@
 body {
     background-color: #004c99;
+    color: white;
     font-family: 'Poppins', Helvetica, sans-serif;
     margin: 0;
     text-align: center;
@@ -10,32 +11,34 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+  
   }
  
   nav a {
-    font-family: 'Poppins', Helvetica, sans-serif;
-    margin: 1rem;
-    padding: 1rem;
     color: white;
     text-decoration: none;
+    margin: 1rem;
+    padding: 1rem;
   }
   
  
   main {
-    margin: 0;
+    margin:0;
     color: #000;
     background-color: #adc2d7;
     flex:1;
     text-align: left;
     padding: 2rem;
+    margin-top: 2rem;
 
   }
 
 
 /* Footer styles */
 footer {
-    min-height: 50px;
+    min-height: 60px;
     background: PapayaWhip;
+    color: #000;
     display: flex;
     align-items: center;
   }
@@ -56,16 +59,19 @@ footer {
     display: flex;
     list-style: none;
     gap: 1rem;
+    
   }
  
   /* Icon styling */
   footer svg {
-    color: #57705B;
+    color: #575f70;
+    width: 30px;
+    height: 30px;
 
   }
   
   footer svg:hover {
-    color: #AABCA3;
+    color: #a3b6bc;
   }
 
 
