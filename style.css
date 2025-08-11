@@ -1,7 +1,9 @@
 body {
     background-color: #004c99;
     color: white;
-    font-family: 'Poppins', Helvetica, sans-serif;
+    body {
+      font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    }    
     margin: 0;
     text-align: center;
     height: 100%;
