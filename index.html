@@ -1,48 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
-    
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hima George </title>
-    <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hima George</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="page-container">
 
-    <header>
-    <h1>Hima George </h1>
-    <nav> 
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-    </nav>
+<header>
+  <h1><a href="index.html">Hima George</a></h1>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#whats-next">What's Next</a>
+    <a href="resume.html">Resume</a>
+  </nav>
 </header>
 
 <main>
-<section id="about">
-    <h2>About Me</h2>
-    <p>Hi!</p>
+
+  <section id="about" class="about-hero">
+    <p class="section-label">About</p>
+    <h2>Hi, I&rsquo;m Hima.</h2>
+    <div class="about-grid">
+      <img
+        src="assets/me.jpeg"
+        alt="Hima George"
+        class="about-photo"
+      />
+      <div>
+        <p>I am a second year Computer Science student at the University of British Columbia.  
+          
+          I have worked as a math and computer science at North Seattle College. 
+          
+          I really enjoy finding interactive websites (I love interactive websites that visualize 
+          data interactively, and love the Puddding
+          ) https://pudding.cool/process/how-to-make-dope-shit-part-2/
+          
+          Currently I am taking CSC 213 (Introduction to Computer Systems) and have been
+          really loving learning all the different layers of a how a computer functions!
+          
+          I am actively looking for CO-OP positions. </p>
+          
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">Java</span>
+          <span class="tag">C / C++</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Git</span>
+          <span class="tag">SQLite</span>
+          <span class="tag">Node.js</span>
+        </div>
+      </div>
+    </div>
   </section>
-<section id="projects">
-    <h2>My projects</h2>
-    <p>Boo.</p>
+
+  <section id="projects">
+    <p class="section-label">Projects</p>
+
+    <div class="project">
+      <div class="project-meta">
+        <h3>Prairie Journal</h3>
+      </div>
+      <p class="project-stack">Chrome Extension &middot; Gemini API &middot; JavaScript</p>
+      <p>An AI-powered Chrome extension for PrairieLearn that explains why you got a practice question wrong and tracks your learning. Built at cmd-f Hackathon, Prairie Journal surfaces misconceptions in plain language so students can learn from mistakes rather than guess again. Entries are saved by course and module on a personal dashboard.</p>
+      <a class="project-link" href="https://github.com/himageorge/prairie-journal" target="_blank">View on GitHub &rarr;</a>
+    </div>
+
+    <div class="project">
+      <div class="project-meta">
+        <h3>SpaceTraders Game</h3>
+      </div>
+      <p class="project-stack">Python &middot; Pydantic &middot; SQLite &middot; Event Sourcing</p>
+      <p>A single-player fleet management game built on the SpaceTraders REST API, where you control an agent in a shared universe, mining asteroids, trading goods, and fulfilling delivery contracts. Designed an event sourcing architecture with immutable event types using Pydantic, enabling full game state reconstruction from event replay.</p>
+      <a class="project-link" href="https://github.com/himageorge/SpaceTraders" target="_blank">View on GitHub &rarr;</a>
+    </div>
+
   </section>
+
+  <section id="whats-next">
+    <p class="section-label">What&rsquo;s Next</p>
+    <h2>Ideas I&rsquo;m working on.</h2>
+    <div class="idea-cards">
+
+      <button class="idea-card" onclick="openModal('reddit')">
+        <div class="idea-card-inner">
+          <span class="idea-card-title">SkinThreads</span>
+          <span class="idea-card-hint">click to read more</span>
+        </div>
+      </button>
+
+      <button class="idea-card" onclick="openModal('clubpenguin')">
+        <div class="idea-card-inner">
+          <span class="idea-card-title">Portfolio 2.0</span>
+          <span class="idea-card-hint">click to read more</span>
+        </div>
+      </button>
+
+
+    </div>
+    <!-- Suggestion box -->
+    <div class="suggestion-area">
+
+      <div class="box-illustration">
+        <div class="paper-slip" id="paperSlip">
+          <div class="slip-lines">
+            <div class="slip-line"></div>
+            <div class="slip-line"></div>
+            <div class="slip-line"></div>
+          </div>
+        </div>
+        <div class="box-svg-wrap">
+          <svg viewBox="0 0 420 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+            <ellipse cx="210" cy="212" rx="160" ry="8" fill="rgba(152,112,112,0.12)"/>
+            <rect x="40" y="80" width="340" height="124" rx="4" fill="#C39898"/>
+            <rect x="44" y="84" width="332" height="116" rx="3" fill="#DBB5B5"/>
+            <rect x="44" y="150" width="332" height="48" rx="3" fill="#C39898" opacity="0.35"/>
+            <rect x="28" y="60" width="364" height="32" rx="4" fill="#987070"/>
+            <rect x="32" y="62" width="356" height="11" rx="3" fill="rgba(255,255,255,0.12)"/>
+            <rect x="155" y="68" width="110" height="10" rx="5" fill="#3a2525" opacity="0.55"/>
+            <line x1="44" y1="150" x2="376" y2="150" stroke="rgba(58,37,37,0.12)" stroke-width="1.5"/>
+            <circle cx="60" cy="100" r="4" fill="rgba(58,37,37,0.2)"/>
+            <circle cx="360" cy="100" r="4" fill="rgba(58,37,37,0.2)"/>
+            <circle cx="60" cy="192" r="4" fill="rgba(58,37,37,0.2)"/>
+            <circle cx="360" cy="192" r="4" fill="rgba(58,37,37,0.2)"/>
+            <g transform="translate(22,42)" opacity="0.7">
+              <polygon points="0,-9 2,-2 9,0 2,2 0,9 -2,2 -9,0 -2,-2" fill="#987070"/>
+            </g>
+            <g transform="translate(392,52)" opacity="0.55">
+              <polygon points="0,-6 1.5,-1.5 6,0 1.5,1.5 0,6 -1.5,1.5 -6,0 -1.5,-1.5" fill="#C39898"/>
+            </g>
+          </svg>
+          <button class="add-suggestion-btn" onclick="openSuggestionModal()">Add Suggestion</button>
+        </div>
+        <a href="suggestions.html" class="view-all-link">View all suggestions &rarr;</a>
+      </div>
+
+      <div class="sug-feed">
+        <p class="feed-label">Your suggestions</p>
+        <div class="feed-list" id="feedList">
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
 </main>
 
+<!-- Suggestion Modal -->
+<div class="modal-overlay" id="suggestionModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeSuggestionModal()">&times;</button>
+    <h3 class="modal-title">Add Suggestion</h3>
+
+    <div class="form-group">
+      <p class="form-label">Type</p>
+      <div class="radio-group">
+        <label class="radio-label"><input type="radio" name="sug-type" value="Suggestion" checked><span>Suggestion</span></label>
+        <label class="radio-label"><input type="radio" name="sug-type" value="Issue"><span>Issue</span></label>
+        <label class="radio-label"><input type="radio" name="sug-type" value="General Comment"><span>General Comment</span></label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <p class="form-label">Tag</p>
+      <div class="tag-chips" id="tagChips">
+        <button type="button" class="tag-chip active" data-value="Space Traders">Space Traders Game</button>
+        <button type="button" class="tag-chip active" data-value="Praire Journal">Priare Journal</button>
+        <button type="button" class="tag-chip" data-value="SkinThreads">SkinThreads</button>
+        <button type="button" class="tag-chip" data-value="Portfolio 2.0">Portfolio 2.0</button>
+        <button type="button" class="tag-chip" data-value="Other Idea">Other Idea</button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <p class="form-label">Description</p>
+      <textarea id="sugDescription" class="form-textarea" placeholder="Describe your suggestion..." maxlength="300"></textarea>
+      <span class="char-count" id="charCount">300 left</span>
+    </div>
+
+    <button class="submit-btn" onclick="submitSuggestion()">Submit Suggestion</button>
+  </div>
+</div>
+
+<!-- What's Next Modals -->
+<div class="modal-overlay" id="modal-reddit">
+  <div class="modal-box modal-box--wide">
+    <button class="modal-close" onclick="closeModal('SkinThreads')">&times;</button>
+    <h3 class="modal-title">SkinThreads</h3>
+
+    <p class="modal-body">A tool that aggregates Reddit skincare reviews so you don&rsquo;t have to scroll for hours. Targets eczema-prone skin users specifically, ranks products by positive mention ratio &mdash; not just popularity &mdash; to surface hidden gems, and gives opinionated recommendations based on your concern instead of an overwhelming list.</p>
+
+    <div class="modal-section">
+      <p class="modal-section-title">Core Features</p>
+      <ul class="modal-list">
+        <li><strong>Search by concern</strong> &mdash; filter by flare-up, daily maintenance, or products to avoid. Returns a top recommendation with supporting Reddit comments.</li>
+        <li><strong>Search a product</strong> &mdash; type a product name, get sentiment breakdown, concern breakdown, and pros/cons from real comments.</li>
+        <li><strong>Compare two products</strong> &mdash; side-by-side view with an LLM-generated summary of how they differ.</li>
+      </ul>
+    </div>
+
+    <div class="modal-section">
+      <p class="modal-section-title">How it works</p>
+      <ul class="modal-list">
+        <li>Pulls posts &amp; comments from r/eczema, r/SkincareAddiction, r/AsianBeauty into SQLite via PRAW.</li>
+        <li>Feeds each comment to an LLM to extract product name, brand, sentiment, concern, and a verbatim snippet &mdash; no hallucinated quotes.</li>
+        <li>Ranks by positive mention ratio with a minimum threshold; a product with 25 mentions at 92% positive beats one with 500 at 65%.</li>
+        <li>Recency weighting and &ldquo;reformulated&rdquo; detection to handle discontinued or changed products.</li>
+      </ul>
+    </div>
+
+    <div class="modal-section">
+      <ul class="stack-list">
+        <p class="modal-section-title">Tech Stack</p>
+        <li>Python</li>
+        <li>PRAW</li>
+        <li>SQLite</li>
+        <li>FastAPI</li>
+        <li>React</li>
+        <li>Anthropic API</li>
+    </ul>
+  </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-clubpenguin">
+  <div class="modal-box modal-box--wide">
+    <button class="modal-close" onclick="closeModal('Portfolio 2.0')">&times;</button>
+    <h3 class="modal-title">Portfolio 2.0</h3>
+    <img src="assets/igloo.png" alt="concept sketch" class="modal-concept-img" />
+    <p class="modal-body">I grew up playing Club Penguin and want to build a portfolio that pays homage to it. 
+     <p>The idea: you arrive at an entry screen, create your penguin, land in an igloo (your personal hub), then explore a town map where each building leads to a different part of the site &mdash; projects, about me, a gallery, maybe a mini game. </p>
+      I also just want to use my artistic side a little bit, and use learn how tools like Render and Three.js.</p>
+    <div class="modal-section">
+      <p class="modal-section-title">Core Features</p>
+      <ul class="modal-list">
+        <li><strong>Entry page</strong> &mdash; Build your penguin avatar by choosing your colour and name</li>
+        <li><strong>Personal Hub</strong> &mdash; Igloo (Similar to the one in Club Penguin) that built using Three.js. Its the home page</li>
+        <li><strong>Map</strong> &mdash; Shows you all the places you can go; contains different buildings that take you to a project etc. </li>
+      </ul>
+    </div>
+      <div class="modal-section">
+        <ul class="stack-list">
+          <p class="modal-section-title">Tech Stack</p>
+        <li>Three.js</li>
+        <li>Blender</li>
+        <li>JavaScript</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
 <footer>
-<div class="footer-container">
-<p>© 2025 Hima George</p>
-<ul class="footer-icons">
-    <li><a href="https://github.com/himageorge" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
-        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-      </svg></a></li>
-    <li><a href="mailto:himageorge5@gmail.com"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
-        <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/></svg></a>
+  <div class="footer-inner">
+    <p>&copy; 2025 Hima George</p>
+    <ul class="footer-icons">
+      <li>
+        <a href="https://github.com/himageorge" target="_blank" aria-label="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+        </a>
       </li>
-      <li><a href="https://www.linkedin.com/in/hima-george-tharepparambil-5976bb241/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
-        <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
-      </svg></a></li></ul>
-</div>
+      <li>
+        <a href="mailto:himageorge5@gmail.com" aria-label="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/in/hima-george-tharepparambil-5976bb241/" target="_blank" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </div>
 </footer>
-</div>
+
+<div class="toast" id="toast"></div>
+<script src="script.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+<script src="supabase.js" defer></script>
 </body>
+</html>

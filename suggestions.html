@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suggestions — Hima George</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --sage:  #999B84;
+  --cream: #F4EEED;
+  --blush: #EFD9D1;
+  --ink:   #3a2f2a;
+  --muted: #7a6e69;
+  --rule:  #d8c8c2;
+  --white: #fff;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; font-weight: 300; background: var(--cream); color: var(--ink); font-size: 16px; line-height: 1.75; min-height: 100vh; }
+
+header {
+  background: var(--sage); color: white;
+  padding: 1.6rem 5vw;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  position: sticky; top: 0; z-index: 100;
+}
+header h1 { font-family: 'Lora', serif; font-weight: 600; font-size: clamp(1.1rem, 2.5vw, 1.45rem); }
+nav { display: flex; gap: 0.2rem; }
+nav a {
+  color: rgba(255,255,255,0.75); text-decoration: none;
+  font-size: 0.82rem; font-weight: 400; letter-spacing: 0.07em; text-transform: uppercase;
+  padding: 0.35rem 0.85rem; border-radius: 3px; transition: color 0.2s, background 0.2s;
+}
+nav a:hover { color: white; background: rgba(255,255,255,0.15); }
+
+.page { max-width: 760px; margin: 0 auto; padding: 3rem 5vw 5rem; }
+
+.page-eyebrow { font-size: 0.73rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 0.5rem; }
+.page h2 { font-family: 'Lora', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 600; color: var(--ink); margin-bottom: 2rem; }
+
+.controls {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+  margin-bottom: 1.75rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--rule);
+}
+.filter-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.filter-chip {
+  font-family: 'DM Sans', sans-serif; font-size: 0.78rem;
+  padding: 0.28rem 0.75rem; border-radius: 20px;
+  border: 1.5px solid var(--rule); background: white; color: var(--muted);
+  cursor: pointer; transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+.filter-chip:hover { border-color: var(--sage); color: var(--ink); }
+.filter-chip.active { border-color: var(--sage); background: var(--sage); color: white; }
+
+.sort-toggle { display: flex; border: 1.5px solid var(--rule); border-radius: 6px; overflow: hidden; }
+.sort-btn {
+  font-family: 'DM Sans', sans-serif; font-size: 0.78rem;
+  padding: 0.3rem 0.8rem; border: none; background: white; color: var(--muted);
+  cursor: pointer; transition: background 0.15s, color 0.15s; white-space: nowrap;
+}
+.sort-btn + .sort-btn { border-left: 1.5px solid var(--rule); }
+.sort-btn.active { background: var(--sage); color: white; }
+
+.results-count { font-size: 0.8rem; color: var(--muted); margin-bottom: 1rem; }
+
+.feed { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.feed-item {
+  background: white; border: 1px solid var(--rule); border-radius: 6px;
+  padding: 1rem 1.2rem;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 0 1rem; align-items: start;
+  animation: fadeUp 0.2s ease forwards;
+}
+@keyframes fadeUp { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+
+.feed-item-content { min-width: 0; }
+.feed-item-top { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+.feed-badge { font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.18rem 0.5rem; border-radius: 2px; font-weight: 600; }
+.badge-suggestion { background: #ddf0e2; color: #266636; }
+.badge-issue      { background: #fde8e8; color: #9a2020; }
+.badge-general    { background: #e8e8fd; color: #303086; }
+.feed-tag { font-size: 0.72rem; color: var(--muted); background: #f3eaea; padding: 0.15rem 0.5rem; border-radius: 2px; }
+.feed-desc { font-size: 0.93rem; color: var(--ink); line-height: 1.6; margin-bottom: 0.35rem; }
+.feed-meta { font-size: 0.72rem; color: var(--muted); }
+
+.delete-btn {
+  background: none; border: none; color: var(--muted);
+  font-size: 1rem; cursor: pointer; padding: 0.2rem 0.3rem;
+  border-radius: 3px; line-height: 1; transition: color 0.15s, background 0.15s;
+  align-self: start; margin-top: 2px;
+}
+.delete-btn:hover { color: #9a2020; background: #fde8e8; }
+
+.loading { text-align: center; padding: 3rem 1rem; color: var(--muted); font-style: italic; }
+.empty-state { text-align: center; padding: 4rem 1rem; color: var(--muted); font-style: italic; }
+.empty-state a { color: var(--sage); text-decoration: none; }
+.empty-state a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="index.html">Hima George</a></h1>
+  <nav>
+    <a href="index.html#about">About</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="index.html#whats-next">What's Next</a>
+    <a href="resume.html">Resume</a>
+  </nav>
+</header>
+
+<div class="page">
+  <span class="page-eyebrow">What's Next</span>
+  <h2>All Suggestions</h2>
+
+  <div class="controls">
+    <div class="filter-chips" id="filterChips">
+      <button class="filter-chip active" data-tag="all">All</button>
+      <button class="filter-chip" data-tag="General">General</button>
+      <button class="filter-chip" data-tag="SpaceTraders">Spaceraders Game</button>
+      <button class="filter-chip" data-tag="Priare Journal">Priare Journal</button>
+      <button class="filter-chip" data-tag="SkinThreads">SkinThreads</button>
+      <button class="filter-chip" data-tag="Portfolio 2.0">Portfolio</button>
+    </div>
+    <div class="sort-toggle">
+      <button class="sort-btn active" data-sort="newest">Newest</button>
+      <button class="sort-btn" data-sort="oldest">Oldest</button>
+    </div>
+  </div>
+
+  <p class="results-count" id="resultsCount"></p>
+  <div class="feed" id="feed"><p class="loading">Loading suggestions&hellip;</p></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const { createClient } = window.supabase;
+const client = createClient(
+  'https://fngdqsaszyviqyszrdac.supabase.co',
+  'sb_publishable_1YTgYnoqae1IL6tw0N5d-g_X3wNSyTY'
+);
+
+function escapeHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function typeClass(type) {
+  if (type === 'Issue') return 'badge-issue';
+  if (type === 'General Comment') return 'badge-general';
+  return 'badge-suggestion';
+}
+
+let allSuggestions = [];
+let activeTag = 'all';
+let activeSort = 'newest';
+
+async function loadAll() {
+  const { data, error } = await client
+    .from('suggestions')
+    .select('*')
+    .order('created_at', { ascending: false });
+  if (error) {
+    document.getElementById('feed').innerHTML = '<p class="empty-state">Could not load suggestions.</p>';
+    return;
+  }
+  allSuggestions = data || [];
+  render();
+}
+
+function render() {
+  const feed = document.getElementById('feed');
+  const countEl = document.getElementById('resultsCount');
+
+  let list = [...allSuggestions];
+  if (activeTag !== 'all') list = list.filter(s => s.tag === activeTag);
+  if (activeSort === 'oldest') list = list.reverse();
+
+  countEl.textContent = list.length === 1 ? '1 suggestion' : list.length + ' suggestions';
+
+  if (list.length === 0) {
+    feed.innerHTML = '<p class="empty-state">No suggestions yet. <a href="index.html#whats-next">Be the first.</a></p>';
+    return;
+  }
+
+  feed.innerHTML = '';
+  list.forEach(s => {
+    const item = document.createElement('div');
+    item.className = 'feed-item';
+    item.innerHTML = `
+      <div class="feed-item-content">
+        <div class="feed-item-top">
+          <span class="feed-badge ${escapeHtml(typeClass(s.type))}">${escapeHtml(s.type)}</span>
+          <span class="feed-tag">${escapeHtml(s.tag)}</span>
+        </div>
+        <p class="feed-desc">${escapeHtml(s.description)}</p>
+        <p class="feed-meta">${new Date(s.created_at).toLocaleDateString('en-CA', {year:'numeric',month:'short',day:'numeric'})}</p>
+      </div>`;
+    feed.appendChild(item);
+  });
+}
+
+document.getElementById('filterChips').addEventListener('click', e => {
+  const chip = e.target.closest('.filter-chip');
+  if (!chip) return;
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+  activeTag = chip.dataset.tag;
+  render();
+});
+
+document.querySelector('.sort-toggle').addEventListener('click', e => {
+  const btn = e.target.closest('.sort-btn');
+  if (!btn) return;
+  document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeSort = btn.dataset.sort;
+  render();
+});
+
+loadAll();
+</script>
+</body>
+</html>

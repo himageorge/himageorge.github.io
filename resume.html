@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume — Hima George</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --sage:  #999B84;
+    --cream: #F4EEED;
+    --ink:   #3a2f2a;
+    --muted: #7a6e69;
+    --rule:  #d8c8c2;
+  }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    background: var(--sage);
+    color: white;
+    padding: 1.6rem 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  header h1 {
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    font-size: clamp(1.1rem, 2.5vw, 1.45rem);
+    letter-spacing: 0.01em;
+  }
+  nav { display: flex; gap: 0.2rem; }
+  nav a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.85rem;
+    border-radius: 3px;
+    transition: color 0.2s, background 0.2s;
+  }
+  nav a:hover { color: white; background: rgba(255,255,255,0.15); }
+  nav a.active { color: white; }
+
+  .resume-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 5vw 3rem;
+    gap: 1.25rem;
+  }
+  .resume-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 900px;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .resume-header h2 {
+    font-family: 'Lora', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .download-btn {
+    background: var(--sage);
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    font-size: 0.84rem;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.04em;
+    transition: background 0.2s;
+  }
+  .download-btn:hover { background: #7a7d65; }
+
+  .pdf-frame {
+    width: 100%;
+    max-width: 900px;
+    height: 85vh;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    background: white;
+  }
+  .no-pdf {
+    width: 100%;
+    max-width: 900px;
+    padding: 3rem 2rem;
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    text-align: center;
+    color: var(--muted);
+  }
+  .no-pdf p { margin-bottom: 0.5rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="index.html">Hima George</a></h1>
+  <nav>
+    <a href="index.html#about">About</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="next.html">What's Next</a>
+    <a href="resume.html" class="active">Resume</a>
+  </nav>
+</header>
+
+<div class="resume-wrap">
+  <div class="resume-header">
+    <h2>Resume</h2>
+    <a href="resume-7.pdf" download class="download-btn">Download PDF</a>
+  </div>
+
+  <object class="pdf-frame" data="resume-7.pdf" type="application/pdf">
+    <div class="no-pdf">
+      <p>PDF preview not available in this browser.</p>
+      <p><a href="resume-7.pdf" download style="color: var(--sage);">Click here to download the resume.</a></p>
+    </div>
+  </object>
+</div>
+
+</body>
+</html>
