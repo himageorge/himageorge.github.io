@@ -130,7 +130,7 @@
   }
   .about-hero .section-label { color: rgba(255,255,255,0.75); }
   .about-hero h2 { color: var(--ink); }
-  .about-hero p { color: rgba(58,47,42,0.85); }
+  .about-hero p { color: rgba(58,47,42,0.85); line-height: 1.5; margin-bottom: 0.5rem; }
 
   /* ── ABOUT LAYOUT ── */
   .about-grid {

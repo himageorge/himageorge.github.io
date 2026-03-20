@@ -28,6 +28,7 @@ header {
   position: sticky; top: 0; z-index: 100;
 }
 header h1 { font-family: 'Lora', serif; font-weight: 600; font-size: clamp(1.1rem, 2.5vw, 1.45rem); }
+header h1 a { color: inherit; text-decoration: none; }
 nav { display: flex; gap: 0.2rem; }
 nav a {
   color: rgba(255,255,255,0.75); text-decoration: none;
@@ -36,16 +37,17 @@ nav a {
 }
 nav a:hover { color: white; background: rgba(255,255,255,0.15); }
 
-.page { max-width: 760px; margin: 0 auto; padding: 3rem 5vw 5rem; }
+.page { max-width: 820px; margin: 0 auto; padding: 3rem 5vw 5rem; }
 
 .page-eyebrow { font-size: 0.73rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 0.5rem; }
 .page h2 { font-family: 'Lora', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 600; color: var(--ink); margin-bottom: 2rem; }
 
 .controls {
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 1rem;
+  display: flex; flex-direction: column; gap: 0.75rem;
   margin-bottom: 1.75rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--rule);
 }
+.controls-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
+
 .filter-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .filter-chip {
   font-family: 'DM Sans', sans-serif; font-size: 0.78rem;
@@ -55,6 +57,8 @@ nav a:hover { color: white; background: rgba(255,255,255,0.15); }
 }
 .filter-chip:hover { border-color: var(--sage); color: var(--ink); }
 .filter-chip.active { border-color: var(--sage); background: var(--sage); color: white; }
+.filter-chip.active.chip-bug { border-color: #9a2020; background: #fde8e8; color: #9a2020; }
+.filter-chip.active.chip-suggestion { border-color: #266636; background: #ddf0e2; color: #266636; }
 
 .sort-toggle { display: flex; border: 1.5px solid var(--rule); border-radius: 6px; overflow: hidden; }
 .sort-btn {
@@ -67,18 +71,32 @@ nav a:hover { color: white; background: rgba(255,255,255,0.15); }
 
 .results-count { font-size: 0.8rem; color: var(--muted); margin-bottom: 1rem; }
 
+/* ── layouts ── */
 .feed { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.feed.layout-single { display: flex; justify-content: center; }
+.feed.layout-single .feed-item { width: 100%; max-width: 420px; }
+
+.feed.layout-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; }
+.feed-col { display: flex; flex-direction: column; gap: 0.75rem; }
+.feed-col-label {
+  font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+  font-weight: 600; margin-bottom: 0.25rem;
+}
+.feed-col-label.label-bug { color: #9a2020; }
+.feed-col-label.label-suggestion { color: #266636; }
+
+@media (max-width: 560px) {
+  .feed.layout-two-col { grid-template-columns: 1fr; }
+}
 
 .feed-item {
   background: white; border: 1px solid var(--rule); border-radius: 6px;
   padding: 1rem 1.2rem;
-  display: grid; grid-template-columns: 1fr auto;
-  gap: 0 1rem; align-items: start;
   animation: fadeUp 0.2s ease forwards;
 }
 @keyframes fadeUp { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
 
-.feed-item-content { min-width: 0; }
 .feed-item-top { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
 .feed-badge { font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.18rem 0.5rem; border-radius: 2px; font-weight: 600; }
 .badge-suggestion { background: #ddf0e2; color: #266636; }
@@ -87,14 +105,6 @@ nav a:hover { color: white; background: rgba(255,255,255,0.15); }
 .feed-tag { font-size: 0.72rem; color: var(--muted); background: #f3eaea; padding: 0.15rem 0.5rem; border-radius: 2px; }
 .feed-desc { font-size: 0.93rem; color: var(--ink); line-height: 1.6; margin-bottom: 0.35rem; }
 .feed-meta { font-size: 0.72rem; color: var(--muted); }
-
-.delete-btn {
-  background: none; border: none; color: var(--muted);
-  font-size: 1rem; cursor: pointer; padding: 0.2rem 0.3rem;
-  border-radius: 3px; line-height: 1; transition: color 0.15s, background 0.15s;
-  align-self: start; margin-top: 2px;
-}
-.delete-btn:hover { color: #9a2020; background: #fde8e8; }
 
 .loading { text-align: center; padding: 3rem 1rem; color: var(--muted); font-style: italic; }
 .empty-state { text-align: center; padding: 4rem 1rem; color: var(--muted); font-style: italic; }
@@ -115,25 +125,34 @@ nav a:hover { color: white; background: rgba(255,255,255,0.15); }
 </header>
 
 <div class="page">
-  <span class="page-eyebrow">What's Next</span>
   <h2>All Suggestions</h2>
 
   <div class="controls">
-    <div class="filter-chips" id="filterChips">
-      <button class="filter-chip active" data-tag="all">All</button>
-      <button class="filter-chip" data-tag="General">General</button>
-      <button class="filter-chip" data-tag="SpaceTraders">Spaceraders Game</button>
-      <button class="filter-chip" data-tag="Priare Journal">Priare Journal</button>
-      <button class="filter-chip" data-tag="SkinThreads">SkinThreads</button>
-      <button class="filter-chip" data-tag="Portfolio 2.0">Portfolio</button>
+    <div class="controls-row">
+      <div class="filter-chips" id="filterChips">
+        <button class="filter-chip active" data-tag="all">All</button>
+        <button class="filter-chip" data-tag="General">General</button>
+        <button class="filter-chip" data-tag="Space Traders">Space Traders Game</button>
+        <button class="filter-chip" data-tag="Praire Journal">Prairie Journal</button>
+        <button class="filter-chip" data-tag="SkinThreads">SkinThreads</button>
+        <button class="filter-chip" data-tag="Portfolio 2.0">Portfolio 2.0</button>
+      </div>
     </div>
-    <div class="sort-toggle">
-      <button class="sort-btn active" data-sort="newest">Newest</button>
-      <button class="sort-btn" data-sort="oldest">Oldest</button>
+    <div class="controls-row" style="margin-top: 0.0rem;">
+      <div class="filter-chips" id="typeChips">
+        <button class="filter-chip active" data-type="all">All types</button>
+        <button class="filter-chip chip-bug" data-type="Bug">Bugs</button>
+        <button class="filter-chip chip-suggestion" data-type="Suggestion">Suggestions</button>
+      </div>
+    </div>
+    <div class="controls-row" style="margin-top: 0.6rem;">
+      <div class="sort-toggle">
+        <button class="sort-btn active" data-sort="newest">Newest</button>
+        <button class="sort-btn" data-sort="oldest">Oldest</button>
+      </div>
     </div>
   </div>
 
-  <p class="results-count" id="resultsCount"></p>
   <div class="feed" id="feed"><p class="loading">Loading suggestions&hellip;</p></div>
 </div>
 
@@ -149,13 +168,26 @@ function escapeHtml(str) {
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 function typeClass(type) {
-  if (type === 'Issue') return 'badge-issue';
-  if (type === 'General Comment') return 'badge-general';
+  if (type === 'Bug') return 'badge-issue';
+  if (type === 'General') return 'badge-general';
   return 'badge-suggestion';
+}
+function makeCard(s) {
+  const item = document.createElement('div');
+  item.className = 'feed-item';
+  item.innerHTML = `
+    <div class="feed-item-top">
+      <span class="feed-badge ${escapeHtml(typeClass(s.type))}">${escapeHtml(s.type)}</span>
+      <span class="feed-tag">${escapeHtml(s.tag)}</span>
+    </div>
+    <p class="feed-desc">${escapeHtml(s.description)}</p>
+    <p class="feed-meta">${new Date(s.created_at).toLocaleDateString('en-CA', {year:'numeric',month:'short',day:'numeric'})}</p>`;
+  return item;
 }
 
 let allSuggestions = [];
 let activeTag = 'all';
+let activeType = 'all';
 let activeSort = 'newest';
 
 async function loadAll() {
@@ -173,42 +205,73 @@ async function loadAll() {
 
 function render() {
   const feed = document.getElementById('feed');
-  const countEl = document.getElementById('resultsCount');
+
 
   let list = [...allSuggestions];
   if (activeTag !== 'all') list = list.filter(s => s.tag === activeTag);
+  if (activeType !== 'all') list = list.filter(s => s.type === activeType);
   if (activeSort === 'oldest') list = list.reverse();
 
-  countEl.textContent = list.length === 1 ? '1 suggestion' : list.length + ' suggestions';
+  feed.innerHTML = '';
 
   if (list.length === 0) {
+    feed.className = 'feed';
     feed.innerHTML = '<p class="empty-state">No suggestions yet. <a href="index.html#whats-next">Be the first.</a></p>';
     return;
   }
 
-  feed.innerHTML = '';
-  list.forEach(s => {
-    const item = document.createElement('div');
-    item.className = 'feed-item';
-    item.innerHTML = `
-      <div class="feed-item-content">
-        <div class="feed-item-top">
-          <span class="feed-badge ${escapeHtml(typeClass(s.type))}">${escapeHtml(s.type)}</span>
-          <span class="feed-tag">${escapeHtml(s.tag)}</span>
-        </div>
-        <p class="feed-desc">${escapeHtml(s.description)}</p>
-        <p class="feed-meta">${new Date(s.created_at).toLocaleDateString('en-CA', {year:'numeric',month:'short',day:'numeric'})}</p>
-      </div>`;
-    feed.appendChild(item);
-  });
+  const bugs = list.filter(s => s.type === 'Bug');
+  const suggestions = list.filter(s => s.type === 'Suggestion');
+  const hasBoth = bugs.length > 0 && suggestions.length > 0;
+
+  if (list.length === 1) {
+    // single item — centred
+    feed.className = 'feed layout-single';
+    feed.appendChild(makeCard(list[0]));
+  } else if (hasBoth && activeType !== 'all') {
+    // two-column split: bugs left, suggestions right (only when filtered by type)
+    feed.className = 'feed layout-two-col';
+
+    const bugCol = document.createElement('div');
+    bugCol.className = 'feed-col';
+    const bugLabel = document.createElement('p');
+    bugLabel.className = 'feed-col-label label-bug';
+    bugLabel.textContent = 'Bugs';
+    bugCol.appendChild(bugLabel);
+    bugs.forEach(s => bugCol.appendChild(makeCard(s)));
+
+    const sugCol = document.createElement('div');
+    sugCol.className = 'feed-col';
+    const sugLabel = document.createElement('p');
+    sugLabel.className = 'feed-col-label label-suggestion';
+    sugLabel.textContent = 'Suggestions';
+    sugCol.appendChild(sugLabel);
+    suggestions.forEach(s => sugCol.appendChild(makeCard(s)));
+
+    feed.appendChild(bugCol);
+    feed.appendChild(sugCol);
+  } else {
+    // single column stack
+    feed.className = 'feed';
+    list.forEach(s => feed.appendChild(makeCard(s)));
+  }
 }
 
 document.getElementById('filterChips').addEventListener('click', e => {
   const chip = e.target.closest('.filter-chip');
   if (!chip) return;
-  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('#filterChips .filter-chip').forEach(c => c.classList.remove('active'));
   chip.classList.add('active');
   activeTag = chip.dataset.tag;
+  render();
+});
+
+document.getElementById('typeChips').addEventListener('click', e => {
+  const chip = e.target.closest('.filter-chip');
+  if (!chip) return;
+  document.querySelectorAll('#typeChips .filter-chip').forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+  activeType = chip.dataset.type;
   render();
 });
 

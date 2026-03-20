@@ -33,27 +33,21 @@
         class="about-photo"
       />
       <div>
-        <p>I am a second year Computer Science student at the University of British Columbia.  
-          
-          I have worked as a math and computer science at North Seattle College. 
-          
-          I really enjoy finding interactive websites (I love interactive websites that visualize 
-          data interactively, and love the Puddding
-          ) https://pudding.cool/process/how-to-make-dope-shit-part-2/
-          
-          Currently I am taking CSC 213 (Introduction to Computer Systems) and have been
-          really loving learning all the different layers of a how a computer functions!
-          
-          I am actively looking for CO-OP positions. </p>
+        <p> I am a second year Computer Science student at the University of British Columbia.  </p>
+        <p>I really enjoy finding interactive websites that visualize 
+          data interactively, and love The Puddding. I also love drawing, reading and looking at the mountains!</p>
+        <p>Currently I am taking CSC 213 (Introduction to Computer Systems) and have been
+          really loving learning all the different layers of a how a computer functions!</p>
+        <p>I am actively looking for CO-OP positions. </p>
           
         <div class="tags">
           <span class="tag">Python</span>
           <span class="tag">Java</span>
-          <span class="tag">C / C++</span>
+          <span class="tag">C</span>
+          <span class="tag">C++</span>
           <span class="tag">JavaScript</span>
           <span class="tag">Git</span>
           <span class="tag">SQLite</span>
-          <span class="tag">Node.js</span>
         </div>
       </div>
     </div>
@@ -141,7 +135,6 @@
       </div>
 
       <div class="sug-feed">
-        <p class="feed-label">Your suggestions</p>
         <div class="feed-list" id="feedList">
 
         </div>
@@ -162,19 +155,18 @@
       <p class="form-label">Type</p>
       <div class="radio-group">
         <label class="radio-label"><input type="radio" name="sug-type" value="Suggestion" checked><span>Suggestion</span></label>
-        <label class="radio-label"><input type="radio" name="sug-type" value="Issue"><span>Issue</span></label>
-        <label class="radio-label"><input type="radio" name="sug-type" value="General Comment"><span>General Comment</span></label>
+        <label class="radio-label"><input type="radio" name="sug-type" value="Bug"><span>Bug</span></label>
+        <label class="radio-label"><input type="radio" name="sug-type" value="General"><span>General</span></label>
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" id="tagGroup">
       <p class="form-label">Tag</p>
       <div class="tag-chips" id="tagChips">
-        <button type="button" class="tag-chip active" data-value="Space Traders">Space Traders Game</button>
-        <button type="button" class="tag-chip active" data-value="Praire Journal">Priare Journal</button>
+        <button type="button" class="tag-chip" data-value="Space Traders">Space Traders Game</button>
+        <button type="button" class="tag-chip" data-value="Praire Journal">Prairie Journal</button>
         <button type="button" class="tag-chip" data-value="SkinThreads">SkinThreads</button>
         <button type="button" class="tag-chip" data-value="Portfolio 2.0">Portfolio 2.0</button>
-        <button type="button" class="tag-chip" data-value="Other Idea">Other Idea</button>
       </div>
     </div>
 
@@ -194,14 +186,14 @@
     <button class="modal-close" onclick="closeModal('SkinThreads')">&times;</button>
     <h3 class="modal-title">SkinThreads</h3>
 
-    <p class="modal-body">A tool that aggregates Reddit skincare reviews so you don&rsquo;t have to scroll for hours. Targets eczema-prone skin users specifically, ranks products by positive mention ratio &mdash; not just popularity &mdash; to surface hidden gems, and gives opinionated recommendations based on your concern instead of an overwhelming list.</p>
+    <p class="modal-body">A tool that aggregates Reddit skincare reviews so you don&rsquo;t have to scroll for hours. Targets eczema-prone skin users specifically and ranks products by positive mention ratio and not just popularity, to surface hidden gems. It also gives opinionated recommendations based on your concern instead of an overwhelming list.</p>
 
     <div class="modal-section">
       <p class="modal-section-title">Core Features</p>
       <ul class="modal-list">
-        <li><strong>Search by concern</strong> &mdash; filter by flare-up, daily maintenance, or products to avoid. Returns a top recommendation with supporting Reddit comments.</li>
-        <li><strong>Search a product</strong> &mdash; type a product name, get sentiment breakdown, concern breakdown, and pros/cons from real comments.</li>
-        <li><strong>Compare two products</strong> &mdash; side-by-side view with an LLM-generated summary of how they differ.</li>
+        <li><strong>Search by concern</strong>&colon; filter by flare-up, daily maintenance, or products to avoid. Returns a top recommendation with supporting Reddit comments.</li>
+        <li><strong>Search a product</strong>&colon; type a product name, get sentiment breakdown, concern breakdown, and pros/cons from real comments.</li>
+        <li><strong>Compare two products</strong>&colon; side-by-side view with an LLM-generated summary of how they differ.</li>
       </ul>
     </div>
 
@@ -234,15 +226,13 @@
     <button class="modal-close" onclick="closeModal('Portfolio 2.0')">&times;</button>
     <h3 class="modal-title">Portfolio 2.0</h3>
     <img src="assets/igloo.png" alt="concept sketch" class="modal-concept-img" />
-    <p class="modal-body">I grew up playing Club Penguin and want to build a portfolio that pays homage to it. 
-     <p>The idea: you arrive at an entry screen, create your penguin, land in an igloo (your personal hub), then explore a town map where each building leads to a different part of the site &mdash; projects, about me, a gallery, maybe a mini game. </p>
-      I also just want to use my artistic side a little bit, and use learn how tools like Render and Three.js.</p>
+    <p class="modal-body">I grew up playing Club Penguin and want to build a portfolio that was inspired by it and allowed me to be a little creative. </p>
     <div class="modal-section">
       <p class="modal-section-title">Core Features</p>
       <ul class="modal-list">
-        <li><strong>Entry page</strong> &mdash; Build your penguin avatar by choosing your colour and name</li>
-        <li><strong>Personal Hub</strong> &mdash; Igloo (Similar to the one in Club Penguin) that built using Three.js. Its the home page</li>
-        <li><strong>Map</strong> &mdash; Shows you all the places you can go; contains different buildings that take you to a project etc. </li>
+        <li><strong>Entry page</strong>&colon; Build your penguin avatar by choosing your colour and name</li>
+        <li><strong>Personal Hub</strong>&colon; Igloo (Similar to the one in Club Penguin) that built using Three.js. Its the home page</li>
+        <li><strong>Map</strong>&colon; Shows you all the places you can go; contains different buildings that take you to a project etc. </li>
       </ul>
     </div>
       <div class="modal-section">

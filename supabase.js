@@ -4,7 +4,7 @@ const client = createClient(
   'sb_publishable_1YTgYnoqae1IL6tw0N5d-g_X3wNSyTY'
 );
 
-const MY_IDS_KEY = 'hima_my_suggestion_ids';
+const MY_IDS_KEY = 'suggestion_ids';
 
 function getMyIds() {
   return JSON.parse(localStorage.getItem(MY_IDS_KEY) || '[]');
@@ -19,8 +19,8 @@ function escapeHtml(str) {
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 function typeClass(type) {
-  if (type === 'Issue') return 'badge-issue';
-  if (type === 'General Comment') return 'badge-general';
+  if (type === 'Bug') return 'badge-issue';
+  if (type === 'General') return 'badge-general';
   return 'badge-suggestion';
 }
 
@@ -142,6 +142,22 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('feedList')?.addEventListener('click', e => {
     const btn = e.target.closest('.feed-delete-btn');
     if (btn) deleteMySuggestion(btn.dataset.id, btn);
+  });
+
+  function updateTagVisibility() {
+    const typeEl = document.querySelector('input[name="sug-type"]:checked');
+    const tagGroup = document.getElementById('tagGroup');
+    if (!tagGroup) return;
+    if (typeEl && typeEl.value === 'General') {
+      tagGroup.style.display = 'none';
+      document.querySelectorAll('.tag-chip').forEach(c => c.classList.remove('active'));
+    } else {
+      tagGroup.style.display = '';
+    }
+  }
+
+  document.querySelectorAll('input[name="sug-type"]').forEach(radio => {
+    radio.addEventListener('change', updateTagVisibility);
   });
 
   document.querySelectorAll('.tag-chip').forEach(chip => {
