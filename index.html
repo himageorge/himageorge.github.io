@@ -33,12 +33,11 @@
         class="about-photo"
       />
       <div>
-        <p> I am a second year Computer Science student at the University of British Columbia.  </p>
-        <p>I really enjoy finding interactive websites that visualize 
-          data interactively, and love The Puddding. I also love drawing, reading and looking at the mountains!</p>
-        <p>Currently I am taking CSC 213 (Introduction to Computer Systems) and have been
-          really loving learning all the different layers of a how a computer functions!</p>
-        <p>I am actively looking for CO-OP positions. </p>
+        <p><strong> I am a second year Computer Science student at the University of British Columbia. </strong> </p>
+        <p><strong>I love learning new things and often find myself go down rabbit holes that include stumbling on cool data visualization websites, 
+          or exploring how CS intersects with biology.</strong></p>
+        <p><Strong> I also love drawing, reading and looking at the mountains! </Strong></p>
+        <p><Strong> I am actively looking for CO-OP positions. </Strong> </p>
           
         <div class="tags">
           <span class="tag">Python</span>
@@ -60,7 +59,7 @@
       <div class="project-meta">
         <h3>Prairie Journal</h3>
       </div>
-      <p class="project-stack"> JavaScript &middot; Gemini API</p>
+      <p class="project-stack"> JavaScript &middot; JavaScript</p>
       <p>An AI-powered Chrome extension for PrairieLearn that explains why you got a practice question wrong and tracks your learning. Built at cmd-f Hackathon, Prairie Journal surfaces misconceptions in plain language so students can learn from mistakes rather than guess again. Entries are saved by course and module on a personal dashboard.</p>
       <a class="project-link" href="https://github.com/himageorge/prairie-journal" target="_blank">View on GitHub &rarr;</a>
     </div>
@@ -200,8 +199,8 @@
     <div class="modal-section">
       <p class="modal-section-title">How it works</p>
       <ul class="modal-list">
-        <li>Pulls posts &amp; comments from r/eczema, r/SkincareAddiction, r/AsianBeauty into SQLite via PRAW.</li>
-        <li>Feeds each comment to an LLM to extract product name, brand, sentiment, concern, and a verbatim snippet &mdash; no hallucinated quotes.</li>
+        <li>Pulls posts &amp; comments from r/eczema, r/SkincareAddiction, r/AsianBeauty into SQLite via json endpoints.</li>
+        <li>Feeds each comment to an LLM to extract product name, brand, sentiment, concern, and a verbatim snippet</li>
         <li>Ranks by positive mention ratio with a minimum threshold; a product with 25 mentions at 92% positive beats one with 500 at 65%.</li>
         <li>Recency weighting and &ldquo;reformulated&rdquo; detection to handle discontinued or changed products.</li>
       </ul>
@@ -211,7 +210,6 @@
       <ul class="stack-list">
         <p class="modal-section-title">Tech Stack</p>
         <li>Python</li>
-        <li>PRAW</li>
         <li>SQLite</li>
         <li>FastAPI</li>
         <li>React</li>
