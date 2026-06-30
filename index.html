@@ -64,8 +64,8 @@
         <p>An AI-powered Chrome extension for PrairieLearn that explains why you got a practice question wrong and tracks your learning. Built at cmd-f Hackathon, Prairie Journal surfaces misconceptions in plain language so students can learn from mistakes rather than guess again. Entries are saved by course and module on a personal dashboard.</p>
         <a class="project-link" href="https://github.com/himageorge/prairie-journal" target="_blank">View on GitHub &rarr;</a>
       </div>
-      <div class="project-photos" onclick="openCarousel(0)">
-        <img src="assets/dashboard1.png" alt="Dashboard" class="project-photo-thumb" />
+      <div class="project-photos" onclick="openModal('prairie-gallery')">
+        <video src="assets/praire-journal.mov" class="project-photo-thumb" autoplay muted loop playsinline></video>
       </div>
     </div>
 
@@ -147,6 +147,7 @@
   <div class="modal-box">
     <button class="modal-close" onclick="closeSuggestionModal()">&times;</button>
     <h3 class="modal-title">Add Suggestion</h3>
+
 
     <div class="form-group">
       <p class="form-label">Type</p>
@@ -246,15 +247,11 @@
   </div>
 </footer>
 
+
 <div class="modal-overlay" id="modal-prairie-gallery">
-  <div class="modal-box modal-box--carousel">
+  <div class="modal-box modal-box--video">
     <button class="modal-close" onclick="closeModal('prairie-gallery')">&times;</button>
-    <div class="carousel">
-      <button class="carousel-arrow carousel-arrow--prev" onclick="carouselStep(-1)" aria-label="Previous">&#8249;</button>
-      <img id="carouselImg" src="" alt="" class="carousel-img" />
-      <button class="carousel-arrow carousel-arrow--next" onclick="carouselStep(1)" aria-label="Next">&#8250;</button>
-    </div>
-    <p class="carousel-counter" id="carouselCounter">1 / 3</p>
+    <video src="assets/praire-journal.mov" class="modal-video" controls playsinline preload="metadata"></video>
   </div>
 </div>
 

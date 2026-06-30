@@ -1,32 +1,12 @@
-// ── PRAIRIE JOURNAL CAROUSEL ──
-const carouselPhotos = [
-  { src: 'assets/dashboard1.png', alt: 'Dashboard' },
-  { src: 'assets/journals.jpeg',  alt: 'Journals'  },
-  { src: 'assets/pop-up.jpeg',    alt: 'Pop-up'    },
-];
-let carouselIndex = 0;
-
-function openCarousel(index) {
-  carouselIndex = index;
-  updateCarousel();
-  const modal = document.getElementById('modal-prairie-gallery');
-  if (modal) { modal.classList.add('open'); document.body.style.overflow = 'hidden'; }
-}
-
-function carouselStep(dir) {
-  carouselIndex = (carouselIndex + dir + carouselPhotos.length) % carouselPhotos.length;
-  updateCarousel();
-}
-
-function updateCarousel() {
-  const img = document.getElementById('carouselImg');
-  const counter = document.getElementById('carouselCounter');
-  if (img) { img.src = carouselPhotos[carouselIndex].src; img.alt = carouselPhotos[carouselIndex].alt; }
-  if (counter) counter.textContent = (carouselIndex + 1) + ' / ' + carouselPhotos.length;
-}
 
 // ── PEEK MODALS ──
 function openModal(type) {
+  if (type === 'prairie-gallery') {
+    const thumb = document.querySelector('.project-photos video');
+    const v = document.querySelector('#modal-prairie-gallery video');
+    if (thumb) thumb.pause();
+    if (v) { v.currentTime = 0; v.play(); }
+  }
   if (type === 'gallery') {
     const grid = document.getElementById('galleryGrid');
     if (grid) {
@@ -48,6 +28,10 @@ function openModal(type) {
 }
 
 function closeModal(type) {
+  if (type === 'prairie-gallery') {
+    const v = document.querySelector('#modal-prairie-gallery video');
+    if (v) v.pause();
+  }
   const modal = document.getElementById('modal-' + type);
   if (modal) {
     modal.classList.remove('open');
@@ -59,16 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.modal-overlay').forEach(overlay => {
     overlay.addEventListener('click', e => {
       if (e.target === overlay) {
-        overlay.classList.remove('open');
-        document.body.style.overflow = '';
+        const id = overlay.id.replace('modal-', '');
+        closeModal(id);
       }
     });
   });
 
-  document.addEventListener('keydown', e => {
-    const gallery = document.getElementById('modal-prairie-gallery');
-    if (!gallery || !gallery.classList.contains('open')) return;
-    if (e.key === 'ArrowRight') carouselStep(1);
-    if (e.key === 'ArrowLeft')  carouselStep(-1);
-  });
 });
