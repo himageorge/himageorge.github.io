@@ -69,11 +69,11 @@ async function renderFeed() {
 async function deleteMySuggestion(id, btn) {
   btn.disabled = true;
   btn.style.opacity = '0.4';
-  const { error } = await client.from('suggestions').delete().eq('id', id);
-  if (error) {
+  const { data, error } = await client.from('suggestions').delete().eq('id', id).select();
+  if (error || !data || data.length === 0) {
     btn.disabled = false;
     btn.style.opacity = '';
-    console.error('Delete error:', error);
+    console.error('Delete failed:', error || 'no rows deleted (check the RLS DELETE policy)');
     return;
   }
   const ids = getMyIds().filter(i => i !== id);
